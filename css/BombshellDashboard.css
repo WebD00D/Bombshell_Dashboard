@@ -1,0 +1,73 @@
+/* label color */
+ .input-field label {
+   color: #ec407a ;
+ }
+
+ .input-field input[type=text]{
+    color:black;
+ }
+ /* label focus color */
+ .input-field input[type=text]:focus + label {
+   color: #ec407a ;
+ }
+ /* label underline focus color */
+ .input-field input[type=text]:focus {
+   border-bottom: 1px solid #000;
+   box-shadow: 0 1px 0 0 #000;
+   color:black;
+ }
+
+
+
+.bombshellpink{
+  color:#EC008B;
+}
+.bombshellHeading{
+  font-family:'alternate-gothic-no-1-d';
+  font-weight:400;
+  font-style:normal;
+  font-size: 120px;
+  
+}
+.bombshellSubHeading{
+  font-family:'kinescope';
+  font-weight:400;
+  font-style:normal;
+}
+
+.tileleft{
+  padding-left:0px;
+}
+
+.tileright{
+  padding-right:0px
+}
+
+.tileFancy{
+  font-family:'kinescope';
+  font-weight:400;
+  font-style:normal;
+  font-size:60px;
+  color:black;
+  border:1px solid white;
+  border-left:none;
+  border-right:none;
+  padding-left:15px;
+  padding-right:15px;
+  padding-bottom:10px;
+
+}
+.tileBlock{
+  font-family:'alternate-gothic-no-1-d';
+  font-weight:400;
+  font-style:normal;
+  font-size:60px;
+  color:black;
+  border:1px solid white;
+  border-left:none;
+  border-right:none;
+  padding-left:15px;
+  padding-right:15px;
+  padding-bottom:0px;
+  padding-top:10px;
+}
