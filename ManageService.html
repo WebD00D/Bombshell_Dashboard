@@ -41,10 +41,10 @@
   <div class="row">
     <Br>
       <Br>
-    <h1 class="bombshellHeading center-align" style="margin-bottom:0px">MANAGE LOCATIONS</h1>
+    <h1 class="bombshellHeading center-align" style="margin-bottom:0px">MANAGE SERVICES</h1>
     <div class="col s6 offset-s3 left-align">
 
-        <ul id="locationUL" class="collection with-header">
+        <ul id="serviceUL" class="collection with-header">
 
 
        </ul>
@@ -57,54 +57,44 @@
 
 
 <!-- Modal Structure -->
-<div id="LocationEditWindow" class="modal">
+<div id="ServiceEditWindow" class="modal">
   <div class="modal-content">
-    <h4 id="LocationName"></h4>
+    <h4 id="ServiceNameHeader"></h4>
 
 
     <div class="row">
 
       <div class="col s12 center-align">
         <div class="input-field col s12 l6 ">
-            <input placeholder="Carytown" id="txtLocationName" type="text">
-            <label for="txtLocationName">Location Name</label>
+            <input placeholder="Brazilian Wax" id="txtUpdateServiceName" type="text">
+            <label for="txtUpdateServiceName">Service Name</label>
         </div>
         <div class="input-field col s12 l6 ">
-            <input placeholder="(804) 555-5555" id="txtLocationPhone" type="text">
-            <label for="txtLocationPhone">Phone Number</label>
+          <select id="dlServiceType" class="browser-default">
+            <option value="" disabled selected>Select service type</option>
+            <option value="Waxing">Waxing</option>
+            <option value="Sugaring">Sugaring</option>
+            <option value="Tanning">Tanning</option>
+            <option value="Hair">Hair</option>
+            <option value="Nails">Nails</option>
+            <option value="Skin Care">Skin Care</option>
+            <option value="Laser Hair Removal">Laser Hair Removal</option>
+          </select>
           </div>
       </div>
       <div class="col s12 center-align">
         <div class="input-field col s12 ">
-            <input placeholder="10. South Crenshaw Ave." id="txtLocationStreet" type="text">
-            <label for="txtLocationStreet">Street</label>
+            <input placeholder="Lorem ipsum dolar set amit..." id="txtUpdateServiceDescription" type="text">
+            <label for="txtUpdateServiceDescription">Service Description</label>
           </div>
       </div>
-      <div class="col s12 center-align">
-        <div class="input-field col s12 l4 ">
-            <input placeholder="Richmond" id="txtLocationCity" type="text">
-            <label for="txtLocationCity">City</label>
-        </div>
-        <div class="input-field col s12 l4 ">
-            <input placeholder="VA" id="txtLocationState" type="text">
-            <label for="txtLocationState">State Abbr.</label>
-        </div>
-        <div class="input-field col s12 l4 ">
-            <input placeholder="23221" id="txtLocationZip" type="text">
-            <label for="txtLocationZip">Zip</label>
-        </div>
-      </div>
-
-
 
     </div>
 
 
-
-
   </div>
   <div class="modal-footer">
-      <a id="btnUpdateLocation" href="#" class="btn white-text btn-flat right waves-effect pink">Save</a>
+      <a id="btnUpdateService" href="#" class="btn white-text btn-flat right waves-effect pink">Save</a>
   </div>
 </div>
 
@@ -124,8 +114,9 @@
     //Load Locations
     Parse.initialize("6lwXuEam4Zl0heDrMSPQtRx2xcaLM792aRNjw1gF", "hvatZD2xQvA6mmL77SDQsc9T6kqrqLo8PbUmDswC");
 
-    var Locations = Parse.Object.extend("Locations");
-    var query = new Parse.Query(Locations);
+    var Services = Parse.Object.extend("Services");
+    var query = new Parse.Query(Services);
+    query.ascending('Service');
     query.find({
       success: function(results) {
 
@@ -133,8 +124,8 @@
         for (var i = 0; i < results.length; i++) {
           var object = results[i];
 
-          var listItem = "<li  data-city='"+ object.get('City') +"' data-zip='"+ object.get('Zipcode') +"' data-state='"+ object.get('StateCode') +"' data-street='"+ object.get('Street') +"' data-phone='"+ object.get('Phone') +"' data-locationID="+ object.id +" class='collection-item'>"+ object.get('Name') +"</li>"
-          $(listItem).appendTo("#locationUL");
+          var listItem = "<li  data-serviceName='"+ object.get('Service') +"' data-serviceType='"+ object.get('ServiceType') +"' data-serviceDescription='"+ object.get('Description') +"'  data-ServiceID="+ object.id +" class='collection-item'>"+ object.get('Service') +"</li>"
+          $(listItem).appendTo("#serviceUL");
 
         }
       },

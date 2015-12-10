@@ -39,76 +39,43 @@
   <!-- end header --->
 
   <div class="row">
-    <Br>
-      <Br>
-    <h1 class="bombshellHeading center-align" style="margin-bottom:0px">MANAGE LOCATIONS</h1>
-    <div class="col s6 offset-s3 left-align">
-
-        <ul id="locationUL" class="collection with-header">
-
-
-       </ul>
-
-
-
+    <div class="col s12 center-align">
+      <h1 class="bombshellHeading">ADD SERVICES</h1>
     </div>
   </div>
 
-
-
-<!-- Modal Structure -->
-<div id="LocationEditWindow" class="modal">
-  <div class="modal-content">
-    <h4 id="LocationName"></h4>
-
-
-    <div class="row">
-
-      <div class="col s12 center-align">
-        <div class="input-field col s12 l6 ">
-            <input placeholder="Carytown" id="txtLocationName" type="text">
-            <label for="txtLocationName">Location Name</label>
-        </div>
-        <div class="input-field col s12 l6 ">
-            <input placeholder="(804) 555-5555" id="txtLocationPhone" type="text">
-            <label for="txtLocationPhone">Phone Number</label>
-          </div>
+  <div class="row">
+    <div class="container">
+    <div class="col s12 center-align">
+      <div class="input-field col s12 l6 ">
+          <input placeholder="Brazilian" id="txtServiceName" type="text">
+          <label for="txtServiceName">Service Name</label>
       </div>
-      <div class="col s12 center-align">
-        <div class="input-field col s12 ">
-            <input placeholder="10. South Crenshaw Ave." id="txtLocationStreet" type="text">
-            <label for="txtLocationStreet">Street</label>
-          </div>
-      </div>
-      <div class="col s12 center-align">
-        <div class="input-field col s12 l4 ">
-            <input placeholder="Richmond" id="txtLocationCity" type="text">
-            <label for="txtLocationCity">City</label>
+      <div class="input-field col s12 l6 ">
+        <select id="dlServiceType" class="browser-default">
+          <option value="" disabled selected>Select service type</option>
+          <option value="Waxing">Waxing</option>
+          <option value="Sugaring">Sugaring</option>
+          <option value="Tanning">Tanning</option>
+          <option value="Hair">Hair</option>
+          <option value="Nails">Nails</option>
+          <option value="Skin Care">Skin Care</option>
+          <option value="Laser Hair Removal">Laser Hair Removal</option>
+        </select>
         </div>
-        <div class="input-field col s12 l4 ">
-            <input placeholder="VA" id="txtLocationState" type="text">
-            <label for="txtLocationState">State Abbr.</label>
+    </div>
+    <div class="col s12 center-align">
+      <div class="input-field col s12 ">
+          <input placeholder="Lorem ipsum dolar set amit.." id="txtServiceDescription" type="text">
+          <label for="txtServiceDescription">Service Description</label>
         </div>
-        <div class="input-field col s12 l4 ">
-            <input placeholder="23221" id="txtLocationZip" type="text">
-            <label for="txtLocationZip">Zip</label>
-        </div>
-      </div>
-
-
-
     </div>
 
-
-
-
+    <div class="col s12 right">
+      <a id="btnAddService" href="#" class="btn white-text btn-flat right waves-effect pink">Save</a>
+    </div>
   </div>
-  <div class="modal-footer">
-      <a id="btnUpdateLocation" href="#" class="btn white-text btn-flat right waves-effect pink">Save</a>
   </div>
-</div>
-
-
 
 
   <!-- All da' JavaScriptzz -->
@@ -117,36 +84,5 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.2/js/materialize.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
   <script src="js/BombshellDashboard.js"></script>
-
-  <script>
-
-  $(document).ready(function(){
-    //Load Locations
-    Parse.initialize("6lwXuEam4Zl0heDrMSPQtRx2xcaLM792aRNjw1gF", "hvatZD2xQvA6mmL77SDQsc9T6kqrqLo8PbUmDswC");
-
-    var Locations = Parse.Object.extend("Locations");
-    var query = new Parse.Query(Locations);
-    query.find({
-      success: function(results) {
-
-        // Do something with the returned Parse.Object values
-        for (var i = 0; i < results.length; i++) {
-          var object = results[i];
-
-          var listItem = "<li  data-city='"+ object.get('City') +"' data-zip='"+ object.get('Zipcode') +"' data-state='"+ object.get('StateCode') +"' data-street='"+ object.get('Street') +"' data-phone='"+ object.get('Phone') +"' data-locationID="+ object.id +" class='collection-item'>"+ object.get('Name') +"</li>"
-          $(listItem).appendTo("#locationUL");
-
-        }
-      },
-      error: function(error) {
-        alert("Error: " + error.code + " " + error.message);
-      }
-    });
-
-
-  }) //end document ready function
-
-  </script>
-
   </body>
 </html>
