@@ -41,10 +41,10 @@
   <div class="row">
     <Br>
       <Br>
-    <h1 class="bombshellHeading center-align" style="margin-bottom:0px">CARYTOWN SERVICES</h1>
+    <h1 id="BombshellLocation" class="bombshellHeading center-align" style="margin-bottom:0px"></h1>
 
 
-    <div class="col s6 offset-s3 left-align">
+    <div class="col l6 s12 offset-l3 left-align">
 
       <Br><Br>
         <div class="row">
@@ -89,54 +89,29 @@
 
 
 <!-- Modal Structure -->
-<div id="LocationEditWindow" class="modal">
+<div id="ServiceAddWindow" class="modal">
   <div class="modal-content">
-    <h4 id="LocationName"></h4>
 
 
     <div class="row">
+      <div class="col s12 left-align">
 
-      <div class="col s12 center-align">
-        <div class="input-field col s12 l6 ">
-            <input placeholder="Carytown" id="txtLocationName" type="text">
-            <label for="txtLocationName">Location Name</label>
-        </div>
-        <div class="input-field col s12 l6 ">
-            <input placeholder="(804) 555-5555" id="txtLocationPhone" type="text">
-            <label for="txtLocationPhone">Phone Number</label>
+        <div class="input-field col s12">
+          <h4 id="AddServiceName"></h4>
+          <select id="dlServiceName" class="browser-default">
+          </select>
+          </div>
+          <div class="input-field col s12 ">
+
+              <input id="txtAddServicePrice" type="text">
+              <label for="txtAddServicePrice">Service Price</label>
           </div>
       </div>
-      <div class="col s12 center-align">
-        <div class="input-field col s12 ">
-            <input placeholder="10. South Crenshaw Ave." id="txtLocationStreet" type="text">
-            <label for="txtLocationStreet">Street</label>
-          </div>
-      </div>
-      <div class="col s12 center-align">
-        <div class="input-field col s12 l4 ">
-            <input placeholder="Richmond" id="txtLocationCity" type="text">
-            <label for="txtLocationCity">City</label>
-        </div>
-        <div class="input-field col s12 l4 ">
-            <input placeholder="VA" id="txtLocationState" type="text">
-            <label for="txtLocationState">State Abbr.</label>
-        </div>
-        <div class="input-field col s12 l4 ">
-            <input placeholder="23221" id="txtLocationZip" type="text">
-            <label for="txtLocationZip">Zip</label>
-        </div>
-      </div>
-
-
-
     </div>
-
-
-
 
   </div>
   <div class="modal-footer">
-      <a id="btnUpdateLocation" href="#" class="btn white-text btn-flat right waves-effect pink">Save</a>
+      <a id="btnAddServicetoLocation" href="#" class="btn white-text btn-flat right waves-effect pink">Save</a>
   </div>
 </div>
 
@@ -157,6 +132,21 @@
     //Load Locations
     Parse.initialize("6lwXuEam4Zl0heDrMSPQtRx2xcaLM792aRNjw1gF", "hvatZD2xQvA6mmL77SDQsc9T6kqrqLo8PbUmDswC");
     var theLocation = url('?location');
+    $("#BombshellLocation").attr("data-location",theLocation);
+
+    var Locationz = Parse.Object.extend("Locations");
+    var locquery = new Parse.Query(Locationz);
+    locquery.get( theLocation , {
+  success: function(locationzzz) {
+    // The object was retrieved successfully.
+    $("#BombshellLocation").text(locationzzz.get('Name') + " Services");
+  },
+  error: function(object, error) {
+    // The object was not retrieved successfully.
+    // error is a Parse.Error with an error code and message.
+  }
+});
+
 
     //Load Each Service
 
@@ -212,7 +202,7 @@
     });
 
     $(".serviceLists").delegate('.collection-item','click',function(){
-      
+
     })
     $(".serviceLists").delegate('.collection-item','mouseover',function(){
       $(this).css("cursor","pointer");
