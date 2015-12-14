@@ -184,9 +184,12 @@ $(document).ready(function(){
       }
     });
 
+  })
 
-
-
+  $(".addService").click(function(e){
+    e.preventDefault();
+    var theServiceType = $(this).attr("data-service");
+    alert(theServiceType);
   })
 
 
@@ -197,8 +200,7 @@ $(document).ready(function(){
 
 
 
-  // END LOCATION JS
 
 
 
-})
+}) // end doc ready

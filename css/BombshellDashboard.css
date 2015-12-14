@@ -17,6 +17,15 @@
    color:black;
  }
 
+ #footer {
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   height:30px;
+   width:100%;
+   background:#999;
+}
+
 
 
 .bombshellpink{
@@ -27,7 +36,7 @@
   font-weight:400;
   font-style:normal;
   font-size: 120px;
-  
+
 }
 .bombshellSubHeading{
   font-family:'kinescope';
