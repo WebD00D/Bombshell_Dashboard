@@ -115,6 +115,32 @@
   </div>
 </div>
 
+<div id="ServiceEditPriceWindow" class="modal">
+  <div class="modal-content">
+
+
+    <div class="row">
+      <div class="col s12 left-align">
+
+        <div class="input-field col s12">
+          <h4 id="EditServiceName"></h4>
+          </div>
+          <div class="input-field col s12 ">
+
+              <input placeholder="100.00" id="txtEditServicePrice" type="text">
+              <label for="txtEditServicePrice">Service Price</label>
+          </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="modal-footer">
+      <a id="btnUpdateServicetoLocation" href="#" style="margin:10px;" class="btn white-text btn-flat right waves-effect pink">UPDATE</a>
+      <a id="btnDeleteServicetoLocation" href="#" style="margin:10px;" class="btn white-text btn-flat right waves-effect grey">DELETE</a>
+
+  </div>
+</div>
+
 
 
 
@@ -191,7 +217,7 @@
             }//end switch
 
 
-            var listItem = "<li class='collection-item'>"+  object.get("ServiceID").get("Service") +"<span class='right'>$"+ object.get('Price') +"</span></li>"
+            var listItem = "<li data-price='"+ object.get("Price") + "' data-servicename='"+ object.get("ServiceID").get("Service") +"' data-service='"+ object.id +"' class='collection-item'>"+  object.get("ServiceID").get("Service") +"<span class='right'>$"+ object.get('Price') +"</span></li>"
             $(listItem).appendTo("#"+ServiceUL);
 
         }
@@ -202,11 +228,75 @@
     });
 
     $(".serviceLists").delegate('.collection-item','click',function(){
-
+      var whoami = $(this).attr('data-service');
+      var serviceName = $(this).attr('data-servicename');
+      var price = $(this).attr('data-price');
+      $("#EditServiceName").text(serviceName);
+      $("#txtEditServicePrice").val(price);
+      $("#btnUpdateServicetoLocation").attr('data-who',whoami);
+      $("#btnDeleteServicetoLocation").attr('data-who',whoami);
+      $("#ServiceEditPriceWindow").openModal();
     })
     $(".serviceLists").delegate('.collection-item','mouseover',function(){
       $(this).css("cursor","pointer");
     })
+
+    $("#btnDeleteServicetoLocation").click(function(){
+      var me = $(this).attr('data-who');
+      var Service = Parse.Object.extend("ServicesOffered");
+      var service = new Service();
+      service.id = me;
+      service.destroy({
+        success: function(service) {
+          // The object was deleted from the Parse Cloud.
+          swal({
+            confirmButtonColor: "#009688",
+            title: "Service Removed!",
+            text: "Service successfully removed from this location.",
+            type: "success",
+            showCancelButton:false,
+            confirmButtonColor:"#e91e63",
+            confirmButtonText:"Cool",
+            closeOnConfirm: false
+          },
+          function(){
+            window.location.reload();
+          });
+        },
+        error: function(service, error) {
+          // The delete failed.
+          // error is a Parse.Error with an error code and message.
+          swal("Uh oh!", error.message, "error")
+        }
+      });
+    }) // end btn delete click function
+
+
+
+    $("#btnUpdateServicetoLocation").click(function(){
+      var me = $(this).attr('data-who');
+      var Service = Parse.Object.extend("ServicesOffered");
+      var service = new Service();
+      service.id = me;
+      service.set("Price",$("#txtEditServicePrice").val());
+      service.save(null, {
+        success: function(service) {
+          swal({
+            confirmButtonColor: "#009688",
+            title: "Service Updated!",
+            text: "Service successfully updated for this location.",
+            type: "success",
+            showCancelButton:false,
+            confirmButtonColor:"#e91e63",
+            confirmButtonText:"Cool",
+            closeOnConfirm: false
+          },
+          function(){
+            window.location.reload();
+          });
+        }
+      });
+    }) // end btn update
 
 
   }) //end document ready function
