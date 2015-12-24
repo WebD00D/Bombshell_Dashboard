@@ -54,6 +54,74 @@ $(document).ready(function(){
     $("#ServiceEditWindow").openModal();
 
   })
+  $("#locationULL").delegate(".collection-item","click",function(){
+    $(".collection-item").removeClass("active");
+    $(this).addClass("active");
+    var Service = $(this).attr("data-serviceName");
+    var ServiceDescription = $(this).attr("data-serviceDescription");
+    var ServiceID = $(this).attr("data-ServiceID");
+
+    $("#txtUpdateServiceDescription").val(ServiceDescription);
+    $("#txtUpdateServiceName").val(Service);
+    $("#btnDeleteSpecial").attr("data-whoami",ServiceID);
+      $("#btnUpdateSpecial").attr("data-whoami",ServiceID);
+    $("#SpeciallocationName").text($(this).attr("data-name"));
+    $("#ServiceEditWindow").openModal();
+
+  })
+
+  $("#btnDeleteSpecial").click(function(){
+      var specialID = $(this).attr("data-whoami");
+      var Specials = Parse.Object.extend("Specials");
+      var updatedService = new Specials();
+      updatedService.id = specialID;
+      updatedService.destroy({
+        success: function(updatedService) {
+    // The object was deleted from the Parse Cloud.
+    swal({
+      confirmButtonColor: "#009688",
+      title: "Delete Successful!",
+      text: "Special has been deleted.",
+      type: "success",
+      showCancelButton:false,
+      confirmButtonColor:"#e91e63",
+      confirmButtonText:"Cool",
+      closeOnConfirm: false
+    },
+    function(){
+      window.location.reload();
+    });
+    },
+    error: function(updatedService, error) {
+    // The delete failed.
+    // error is a Parse.Error with an error code and message.
+  }
+  });
+  })
+
+  $("#btnUpdateSpecial").click(function(){
+    var who = $(this).attr("data-whoami");
+    var specialID = $(this).attr("data-whoami");
+    var Specials = Parse.Object.extend("Specials");
+    var updatedService = new Specials();
+        updatedService.id = specialID;
+        updatedService.set("Special", $("#txtUpdateServiceName").val());
+        updatedService.set("Description",$("#txtUpdateServiceDescription").val());
+        updatedService.save();
+        swal({
+          confirmButtonColor: "#009688",
+          title: "Save Successful!",
+          text: "Special has been updated and saved.",
+          type: "success",
+          showCancelButton:false,
+          confirmButtonColor:"#e91e63",
+          confirmButtonText:"Cool",
+          closeOnConfirm: false
+        },
+        function(){
+          window.location.reload();
+        });
+  })
 
   $("#btnAddService").click(function(){
     var ServiceName = $("#txtServiceName").val();
