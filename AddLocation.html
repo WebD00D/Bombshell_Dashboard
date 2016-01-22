@@ -16,6 +16,12 @@
   </head>
   <body>
 
+    <div id="preloader">
+      <div class="spinner">
+         <div class="double-bounce1"></div>
+         <div class="double-bounce2"></div>
+      </div>
+    </div>
   <!-- header begin -->
 
   <nav style="background-color:#1f1f1f" role="navigation">
@@ -111,5 +117,17 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.2/js/materialize.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
   <script src="js/BombshellDashboard.js"></script>
+  <script>
+
+
+    $(window).load(function(){
+    $('#preloader').fadeOut('slow',function(){$(this).remove();});
+
+
+
+    });
+
+
+  </script>
   </body>
 </html>

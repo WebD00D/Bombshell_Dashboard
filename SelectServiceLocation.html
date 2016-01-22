@@ -14,6 +14,12 @@
     <script>try{Typekit.load({ async: true });}catch(e){}</script>
   </head>
   <body>
+    <div id="preloader">
+      <div class="spinner">
+         <div class="double-bounce1"></div>
+         <div class="double-bounce2"></div>
+      </div>
+    </div>
 
   <!-- header begin -->
   <div id="index-banner" class="parallax-container pink lighten-1" style=";height:100vh">
@@ -148,6 +154,18 @@
 
   </script>
 
+  <script>
+
+
+    $(window).load(function(){
+    $('#preloader').fadeOut('slow',function(){$(this).remove();});
+
+
+
+    });
+
+
+  </script>
 
   </body>
 </html>
