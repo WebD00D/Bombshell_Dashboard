@@ -19,6 +19,8 @@ $(document).ready(function(){
     var ZipCode = $(this).attr("data-zip");
     var City = $(this).attr("data-city");
     var Street = $(this).attr("data-street");
+    var Booking = $(this).attr("data-booking");
+    var Giftcard = $(this).attr("data-giftcard");
 
     $("#LocationName").text(theText);
     $("#txtLocationName").val(theText);
@@ -27,6 +29,9 @@ $(document).ready(function(){
     $("#txtLocationState").val(StateCode);
     $("#txtLocationCity").val(City)
     $("#txtLocationZip").val(ZipCode);
+    $("#txtBookingLink").val(Booking);
+    $("#txtGiftCardLink").val(Giftcard);
+
     $("#btnUpdateLocation").attr("data-whoami",LocationID);
     $("#LocationEditWindow").openModal();
   })
@@ -199,6 +204,8 @@ $(document).ready(function(){
         updatedLocation.set("City",$("#txtLocationCity").val());
         updatedLocation.set("StateCode",$("#txtLocationState").val());
         updatedLocation.set("Zipcode",$("#txtLocationZip").val());
+        updatedLocation.set("bookingLink",$("#txtBookingLink").val());
+        updatedLocation.set("giftcardLink",$("#txtGiftCardLink").val());
         updatedLocation.save();
         swal({
           confirmButtonColor: "#009688",
@@ -227,6 +234,8 @@ $(document).ready(function(){
     var locationCity = $("#txtLocationCity").val();
     var locationStateAbbr = $("#txtLocationState").val();
     var locationZipcode = $("#txtLocationZip").val();
+    var giftCardLink = $("#txtGiftCardLink").val();
+    var bookingLink = $("#txtBookingLink").val();
 
 
     var Locations = Parse.Object.extend("Locations");
@@ -239,6 +248,8 @@ $(document).ready(function(){
     locations.set("Zipcode",locationZipcode);
     locations.set("CityStateZip",locationCity + ', ' + locationStateAbbr + ' ' + locationZipcode);
     locations.set("StateCode",locationStateAbbr);
+    locations.set("bookingLink",bookingLink);
+    locations.set("giftcardLink",giftcardLink);
 
     locations.save(null, {
       success: function(locations) {
