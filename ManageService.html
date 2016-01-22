@@ -15,6 +15,12 @@
     <script>try{Typekit.load({ async: true });}catch(e){}</script>
   </head>
   <body>
+    <div id="preloader">
+      <div class="spinner">
+         <div class="double-bounce1"></div>
+         <div class="double-bounce2"></div>
+      </div>
+    </div>
 
   <!-- header begin -->
   <nav style="background-color:#1f1f1f" role="navigation">
@@ -151,6 +157,18 @@
 
 
   }) //end document ready function
+
+  </script>
+  <script>
+
+
+    $(window).load(function(){
+    $('#preloader').fadeOut('slow',function(){$(this).remove();});
+
+
+
+    });
+
 
   </script>
 
