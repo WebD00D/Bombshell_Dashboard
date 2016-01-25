@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Bombshell Dashboard</title>
+    <!-- Make it stylish now -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.2/css/materialize.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/BombshellDashboard.css">
+    <!-- Adobe Type Kit -->
+    <script src="https://use.typekit.net/mhf2njr.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
+  </head>
+  <body>
+
+    <div id="preloader">
+      <div class="spinner">
+         <div class="double-bounce1"></div>
+         <div class="double-bounce2"></div>
+      </div>
+    </div>
+  <!-- header begin -->
+
+  <nav style="background-color:#1f1f1f" role="navigation">
+  <div class="nav-wrapper container">
+    <a id="logo-container" href="index.html" class="brand-logo" style="padding-top:15px" ><img style='height:150px' src="http://files.parsetfss.com/69cc1ebe-f693-4f84-ae97-93438bf7ac31/tfss-0ed7deb8-14c3-4540-bc9a-2312f00a1e3a-bombshellupdateed.jpg"></a>
+    <ul class="right hide-on-med-and-down ">
+      <li><a class='bombshellpink dropdown-button' data-beloworigin="true" data-constrainwidth="false" data-hover='true' href="#" data-activates='dropdown1'> Locations</a></li>
+      <li><a class='bombshellpink dropdown-button' data-beloworigin="true" data-constrainwidth="false" data-hover='true' href="#" data-activates='dropdown2'> Services</a></li>
+      <li><a class='bombshellpink dropdown-button' data-beloworigin="true" data-constrainwidth="false" data-hover='true' href="#" data-activates='dropdown3'> Specials</a></li>
+      <li><a class='bombshellpink' href="#"> Logout</a></li>
+    </ul>
+    <ul id='dropdown1' class='dropdown-content bombshellpink' >
+      <li><a class="bombshellpink" href="AddLocation.html" style="color:#26424F">Add New</a></li>
+      <li><a class="bombshellpink" href="ManageLocations.html" style="color:#26424F">View / Edit</a></li>
+    </ul>
+    <ul id='dropdown2' class='dropdown-content bombshellpink' >
+      <li><a class="bombshellpink" href="AddServices.html" style="color:#26424F">Add New</a></li>
+      <li><a class="bombshellpink" href="ManageService.html" style="color:#26424F">View / Edit</a></li>
+      <li><a class="bombshellpink" href="SelectServiceLocation.html" style="color:#26424F">Service Menus</a></li>
+    </ul>
+    <ul id='dropdown3' class='dropdown-content bombshellpink' >
+      <li><a class="bombshellpink" href="AddSpecials.html" style="color:#26424F">Add New</a></li>
+      <li><a class="bombshellpink" href="ManageSpecials.html" style="color:#26424F">View / Edit</a></li>
+
+    </ul>
+
+    <ul id="nav-mobile" class="side-nav">
+    <li><a class='bombshellpink' href="#"> Link</a></li>
+    <li><a class='bombshellpink' href="#"> Link</a></li>
+    <li><a class='bombshellpink' href="#"> Link</a></li>
+    </ul>
+    <a href="#" data-activates="nav-mobile" class="button-collapse "><i class="material-icons pink-text">menu</i></a>
+  </div>
+</nav>
+  <!-- end header --->
+
+  <div class="row" style="margin-top:8%">
+    <div class="col s12 center-align">
+      <h1 class="bombshellHeading" style="margin-bottom:0px">ADD CAREER</h1>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="container">
+    <div class="col s12 center-align">
+      <div class="input-field col s12 l6 ">
+          <input placeholder="Junior Artist" id="txtPositionTitle" type="text">
+          <label for="txtPositionTitle">Position Title</label>
+      </div>
+      <div class="input-field col s12 l6 ">
+          <input placeholder="Las Vegas, NV" id="txtPositionLocation" type="text">
+          <label for="txtPositionLocation">Position Location</label>
+        </div>
+    </div>
+
+    <div class="col s12 right">
+      <a id="btnAddCareer" href="#" class="btn white-text btn-flat right waves-effect pink">Add Career</a>
+    </div>
+
+  </div>
+
+
+  <!-- All da' JavaScriptzz -->
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="//www.parsecdn.com/js/parse-1.6.7.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.2/js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
+  <script src="js/BombshellDashboard.js"></script>
+  <script>
+
+
+    $(window).load(function(){
+    $('#preloader').fadeOut('slow',function(){$(this).remove();});
+
+
+
+    });
+
+
+  </script>
+  </body>
+</html>

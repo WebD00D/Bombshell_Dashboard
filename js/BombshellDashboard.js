@@ -36,6 +36,39 @@ $(document).ready(function(){
     $("#LocationEditWindow").openModal();
   })
 
+
+  $("#btnAddCareer").click(function(){
+    var Position = $("#txtPositionTitle").val();
+    var JobLocation = $("#txtPositionLocation").val();
+
+
+    var Careers = Parse.Object.extend("Careers");
+    var career = new Careers();
+    career.set("Title",Position);
+    career.set("Location",JobLocation);
+
+    career.save(null, {
+      success: function(career) {
+        // Execute any logic that should take place after the object is saved.
+        swal({
+          confirmButtonColor: "#009688",
+          title: "Save Successful!",
+          text: "Position has been successfully added.",
+          type: "success",
+          showCancelButton:false,
+          confirmButtonColor:"#e91e63",
+          confirmButtonText:"Cool",
+          closeOnConfirm: true
+        });
+      },
+      error: function(career, error) {
+        // Execute any logic that should take place if the save fails.
+        // error is a Parse.Error with an error code and message.
+        swal("Uh oh!", error.message, "error")
+      }
+    });
+  })
+
   $("#serviceUL").delegate(".collection-item","mouseover",function(){
     $(this).css("cursor","pointer");
   })
