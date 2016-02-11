@@ -23,7 +23,6 @@
     </div>
 
   <!-- header begin -->
-
   <nav style="background-color:#1f1f1f" role="navigation">
   <div class="nav-wrapper container">
     <a id="logo-container" href="index.html" class="brand-logo" style="padding-top:15px" ><img style='height:150px' src="http://files.parsetfss.com/69cc1ebe-f693-4f84-ae97-93438bf7ac31/tfss-0ed7deb8-14c3-4540-bc9a-2312f00a1e3a-bombshellupdateed.jpg"></a>
@@ -72,43 +71,25 @@
   <!-- end header --->
 
   <div class="row" style="margin-top:7%">
-    <div class="col s12 center-align">
-      <h1 class="bombshellHeading">ADD SERVICES</h1>
+    <Br>
+      <Br>
+    <h1 class="bombshellHeading center-align" style="margin-bottom:0px">MANAGE CAREERS</h1>
+    <div class="col s6 offset-s3 left-align">
+
+        <ul id="careerUL" class="collection with-header">
+
+
+       </ul>
+
+
+
     </div>
   </div>
 
-  <div class="row">
-    <div class="container">
-    <div class="col s12 center-align">
-      <div class="input-field col s12 l6 ">
-          <input placeholder="Brazilian" id="txtServiceName" type="text">
-          <label for="txtServiceName">Service Name</label>
-      </div>
-      <div class="input-field col s12 l6 ">
-        <select id="dlServiceType" class="browser-default">
-          <option value="" disabled selected>Select service type</option>
-          <option value="Waxing">Waxing</option>
-          <option value="Sugaring">Sugaring</option>
-          <option value="Tanning">Tanning</option>
-          <option value="Hair">Hair</option>
-          <option value="Nails">Nails</option>
-          <option value="Skin Care">Skin Care</option>
-          <option value="Laser Hair Removal">Laser Hair Removal</option>
-        </select>
-        </div>
-    </div>
-    <div class="col s12 center-align">
-      <div class="input-field col s12 ">
-          <input placeholder="Lorem ipsum dolar set amit.." id="txtServiceDescription" type="text">
-          <label for="txtServiceDescription">Service Description</label>
-        </div>
-    </div>
 
-    <div class="col s12 right">
-      <a id="btnAddService" href="#" class="btn white-text btn-flat right waves-effect pink">Save</a>
-    </div>
-  </div>
-  </div>
+
+
+
 
 
   <!-- All da' JavaScriptzz -->
@@ -117,6 +98,84 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.2/js/materialize.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert-dev.js"></script>
   <script src="js/BombshellDashboard.js"></script>
+
+  <script>
+
+  $(document).ready(function(){
+    //Load Locations
+    Parse.initialize("6lwXuEam4Zl0heDrMSPQtRx2xcaLM792aRNjw1gF", "hvatZD2xQvA6mmL77SDQsc9T6kqrqLo8PbUmDswC");
+
+    var Services = Parse.Object.extend("Careers");
+    var query = new Parse.Query(Services);
+    query.ascending('createdAt');
+    query.find({
+      success: function(results) {
+
+        // Do something with the returned Parse.Object values
+        for (var i = 0; i < results.length; i++) {
+          var object = results[i];
+
+          var listItem = "<li  data-title='"+ object.get('Title') +"'  data-careerID="+ object.id +" class='collection-item'>"+ object.get('Title') + ' @' + object.get('Location') + "<span class='right'><a  data-careerID="+ object.id +" class='pink-text delete' href='#'><i class='fa fa-close'></i> Remove</a></span>" +"</li>"
+          $(listItem).appendTo("#careerUL");
+
+        }
+      },
+      error: function(error) {
+        console.log("Error: " + error.code + " " + error.message);
+      }
+    });
+
+
+    $("#careerUL").delegate(".delete","click",function(){
+      var careerID = $(this).attr("data-careerID");
+
+      swal({   title: "Are you sure?",
+               text: "You will not be able to undo this action.",
+               type: "warning",
+               showCancelButton: true,
+               confirmButtonColor: "#e91e63",
+               confirmButtonText: "Yes, delete it!",
+               closeOnConfirm: false
+             },
+               function(){
+
+
+
+                 var Career = Parse.Object.extend("Careers");
+                 var career = new Career();
+                 career.id = careerID;
+                 career.destroy({
+                   success: function(career) {
+                     // The object was deleted from the Parse Cloud.
+                     swal({
+                       confirmButtonColor: "#009688",
+                       title: "Career Removed!",
+                       text: "Career successfully removed from this location.",
+                       type: "success",
+                       showCancelButton:false,
+                       confirmButtonColor:"#e91e63",
+                       confirmButtonText:"Cool",
+                       closeOnConfirm: false
+                     },
+                     function(){
+                       window.location.reload();
+                     });
+                   },
+                   error: function(career, error) {
+                     // The delete failed.
+                     // error is a Parse.Error with an error code and message.
+                     swal("Uh oh!", error.message, "error")
+                   }
+                 });
+
+
+
+                });
+              })
+
+  }) //end document ready function
+
+  </script>
   <script>
 
 
@@ -129,5 +188,6 @@
 
 
   </script>
+
   </body>
 </html>
