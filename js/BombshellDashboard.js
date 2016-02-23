@@ -282,7 +282,7 @@ $(document).ready(function(){
     locations.set("CityStateZip",locationCity + ', ' + locationStateAbbr + ' ' + locationZipcode);
     locations.set("StateCode",locationStateAbbr);
     locations.set("bookingLink",bookingLink);
-    locations.set("giftcardLink",giftcardLink);
+    locations.set("giftcardLink",giftCardLink);
 
     locations.save(null, {
       success: function(locations) {
