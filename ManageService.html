@@ -149,6 +149,7 @@
     var Services = Parse.Object.extend("Services");
     var query = new Parse.Query(Services);
     query.ascending('Service');
+    query.limit(500);
     query.find({
       success: function(results) {
 
