@@ -74,7 +74,7 @@
   <div class="row" style="margin-top:7%">
     <Br>
       <Br>
-    <h1 id="BombshellLocation" class="bombshellHeading center-align" style="margin-bottom:0px"></h1>
+    <h1 id="BombshellLocation" class="bombshellHeading center-align" style="margin-bottom:0px;text-transform:uppercase"></h1>
 
 
     <div class="col l6 s12 offset-l3 left-align">
@@ -114,6 +114,21 @@
         <div class="row">
             <a href="#" id="btnAddLaserHairRemoval" data-service='Laser Hair Removal' class="addService btn-floating waves-effect waves-light black right  lighten-1 "><i class="material-icons">add</i></a><h3 class="bombshellHeading" style="font-size:28px">LASER HAIR REMOVAL</h3>
           <ul id="LaserHairUL" class="collection with-header serviceLists"></ul>
+        </div>
+
+        <div class="row">
+            <a href="#" id="btnAddInOut" data-service='Atomic Bombshell In & Out Fast' class="addService btn-floating waves-effect waves-light black right  lighten-1 "><i class="material-icons">add</i></a><h3 class="bombshellHeading" style="font-size:28px">ATOMIC BOMBSHELL IN & OUT FAST</h3>
+          <ul id="InOutUL" class="collection with-header serviceLists"></ul>
+        </div>
+
+        <div class="row">
+            <a href="#" id="btnAddExtras" data-service='The Little Extras' class="addService btn-floating waves-effect waves-light black right  lighten-1 "><i class="material-icons">add</i></a><h3 class="bombshellHeading" style="font-size:28px">THE LITTLE EXTRAS</h3>
+          <ul id="ExtrasUL" class="collection with-header serviceLists"></ul>
+        </div>
+
+        <div class="row">
+            <a href="#" id="btnAddMakeup" data-service='Makeup & Lashes' class="addService btn-floating waves-effect waves-light black right  lighten-1 "><i class="material-icons">add</i></a><h3 class="bombshellHeading" style="font-size:28px">MAKEUP AND LASHES</h3>
+          <ul id="MakeupUL" class="collection with-header serviceLists"></ul>
         </div>
 
     </div>
@@ -246,6 +261,15 @@
             case 'Laser Hair Removal':
               ServiceUL = 'LaserHairUL';
               break;
+              case 'Atomic Bombshell In & Out Fast':
+                ServiceUL = 'InOutUL';
+                break;
+                case 'The Little Extras':
+                  ServiceUL = 'ExtrasUL';
+                  break;
+                  case 'Makeup & Lashes':
+                    ServiceUL = 'MakeupUL';
+                    break;
             default:
               alert('whaaa???');
             }//end switch
